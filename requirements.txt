@@ -1,0 +1,7 @@
+python
+pip
+node
+npm
+electron
+electron-builder
+electron-packager
