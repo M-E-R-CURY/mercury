@@ -1,34 +1,38 @@
-name: Build Mercury EXE
+name: Build Electron App
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    tags:
+      - 'v*'  # Only build when you push a version tag like v1.0.0
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: 📥 Checkout code
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: ⚙️ Setup Node.js
+    - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: 18
 
-    - name: 📦 Install dependencies
+    - name: Install dependencies
       working-directory: public
       run: npm install
 
-    - name: 🛠️ Package Electron app for Windows
+    - name: Package Electron App
       run: npx electron-packager . Mercury --platform=win32 --arch=x64 --out=../dist --overwrite
       working-directory: public
 
+    - name: Zip build
+      run: Compress-Archive -Path dist/Mercury-win32-x64/* -DestinationPath mercury.zip
+      shell: powershell
 
-    - name: 📤 Upload built app
-      uses: actions/upload-artifact@v4
+    - name: Upload to GitHub Releases
+      uses: softprops/action-gh-release@v1
       with:
-        name: mercury-windows-exe
-        path: dist/Mercury-win32-x64
+        files: mercury.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
