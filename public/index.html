@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mercury Browser</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #nav { background: #222; padding: 10px; display: flex; }
+    #url { flex: 1; font-size: 16px; padding: 6px; }
+    button { margin-left: 5px; padding: 6px 12px; font-size: 16px; }
+    #webview { width: 100%; height: calc(100vh - 50px); border: none; }
+  </style>
+</head>
+<body>
+  <div id="nav">
+    <input type="text" id="url" placeholder="Enter URL (like https://google.com)" />
+    <button id="go">Go</button>
+  </div>
+  <webview id="webview" src="https://google.com" ></webview>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
