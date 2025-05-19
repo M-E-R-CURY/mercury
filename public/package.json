@@ -1,11 +1,16 @@
 {
   "name": "mercury-browser",
   "version": "1.0.0",
+  "description": "Mercury - a custom web browser built with Electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-win": "electron-packager . Mercury --platform=win32 --arch=x64 --out=dist --overwrite"
   },
+  "author": "CJ",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "..."
+    "electron": "^28.2.0",
+    "electron-packager": "^17.1.2"
   }
 }
