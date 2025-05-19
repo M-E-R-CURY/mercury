@@ -19,10 +19,13 @@ jobs:
         node-version: '18'
 
     - name: 📦 Install dependencies
+      working-directory: public
       run: npm install
 
     - name: 🛠️ Package Electron app for Windows
-      run: npx electron-packager ./public Mercury --platform=win32 --arch=x64 --out=dist --overwrite
+      run: npx electron-packager . Mercury --platform=win32 --arch=x64 --out=../dist --overwrite
+      working-directory: public
+
 
     - name: 📤 Upload built app
       uses: actions/upload-artifact@v4
