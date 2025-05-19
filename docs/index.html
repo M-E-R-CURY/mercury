@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mercury Browser</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header, section, footer {
+      padding: 2em;
+    }
+    .btn {
+      display: inline-block;
+      margin: 1em 0;
+      padding: 0.75em 1.5em;
+      background: #ff5050;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5em;
+    }
+    .feature {
+      background: #222;
+      padding: 1em;
+      border-radius: 10px;
+      width: 250px;
+    }
+    .screenshot {
+      max-width: 90%;
+      border-radius: 10px;
+      margin-top: 1em;
+    }
+    #countdown {
+      margin-top: 20px;
+      font-size: 1.3em;
+    }
+    #timer {
+      font-weight: bold;
+      color: #ff5050;
+    }
+    #blog article {
+      background: #1c1c1c;
+      padding: 1em;
+      margin: 1em auto;
+      border-radius: 8px;
+      max-width: 600px;
+      text-align: left;
+    }
+    #subscribe-form input {
+      padding: 10px;
+      width: 250px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 10px;
+    }
+    #subscribe-form button {
+      padding: 10px;
+      background: #ff5050;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
+    #subscribe-msg {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #6f6;
+    }
+    #darkModeToggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #444;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    body.light {
+      background: #fefefe;
+      color: #111;
+    }
+    body.light header,
+    body.light section,
+    body.light footer,
+    body.light #blog article {
+      background: #f0f0f0;
+      color: #111;
+    }
+    body.light .btn,
+    body.light #subscribe-form button {
+      background: #111;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <button id="darkModeToggle">🌙 Toggle Dark Mode</button>
+
+  <header>
+    <h1>Mercury Browser</h1>
+    <p>A lightweight, customizable browser made with Electron.</p>
+    <a href="#download" class="btn">Download Now</a>
+    <div id="countdown">
+      <h3>Release Countdown</h3>
+      <div id="timer">Loading...</div>
+    </div>
+  </header>
+
+  <section class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>🚀 Fast</h3>
+        <p>No bloat. Just speed and clean browsing.</p>
+      </div>
+      <div class="feature">
+        <h3>🔥 Awesome</h3>
+        <p>Best browser out there -CJ.</p>
+      </div>
+      <div class="feature">
+        <h3>🕶️ Private</h3>
+        <p>No spying, no tracking — just you and the web.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screenshots">
+    <h2>See Mercury in Action</h2>
+    <img src="assets/Screenshot 2025-05-18 22.36.05.png" class="screenshot" alt="Screenshot" />
+  </section>
+
+  <section id="blog">
+    <h2>Behind the Scenes</h2>
+    <article>
+      <h3>[May 18, 2025, 11:39 PM] Project page creation.</h3>
+      <p>Project portfolio website that shows off mercury, this is only a chemical hazard to u if youre not using it.</p>
+    </article>
+    <article>
+      <h3>[May 18, 2025, 2:00 PM] UI Shell Done</h3>
+      <p>Core layout and tab logic working. It’s smooth as butter already.</p>
+    </article>
+    <article>
+      <h3>[March 2, 2025, 12:30 PM ] Project Kickoff</h3>
+      <p>Started Mercury to make a browser that’s fast, private, and actually mine.</p>
+    </article>
+  </section>
+
+  <section id="subscribe">
+    <h2>Stay in the Loop</h2>
+    <form id="subscribe-form">
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="subscribe-msg"></p>
+  </section>
+
+  <section id="download">
+    <h2>Try Mercury</h2>
+    <p>Mercury is still cooking, but early builds are coming soon!</p>
+    <a href="https://github.com/m-e-r-cury/mercury" class="btn">View on GitHub</a>
+  </section>
+<section id="blog">
+  <article>
+    <h2>Why did we make mercury?</h2>
+    <p>Our founder, CJ Hauser, beleived in privacy and safe for all, and fast too.</p>
+</article>
+</section>
+  <footer>
+    <p>© 2025 Mercury Browser. Built by CJ.</p>
+  </footer>
+
+  <script>
+    // Countdown
+    const releaseDate = new Date("2025-05-23T12:12:10Z");
+    const timer = document.getElementById("timer");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = releaseDate - now;
+      if (diff <= 0) {
+        timer.textContent = "Released!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Email Subscribe
+    document.getElementById("subscribe-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const email = e.target.querySelector("input").value;
+      const msg = document.getElementById("subscribe-msg");
+      msg.textContent = `Subscribed with ${email}. We'll be in touch!`;
+      e.target.reset();
+    });
+
+    // Dark mode toggle
+    const toggle = document.getElementById("darkModeToggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+    });
+  </script>
+</body>
+</html>
